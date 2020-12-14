@@ -605,44 +605,5 @@ function [h,g] = phiAndX(tPowerMin,tPowerMax,lPowerMin,lPowerMax,behaviorList,ba
         text(Tletter(i),Lletter(i),200,letterCell{i},'color',letterColor{i},'HorizontalAlignment','center','VerticalAlignment','middle','fontweight','bold')
     end 
     
-    %Plot a figure that shows 
     
-    figure
-    surf(T,L,phi,'edgealpha',0,'facealpha',1)
-    colormap autumn
-    surfAx = gca;
-    xlabel('Time-scale (s)')
-    ylabel('Length-scale (m)')
-    title('Phase angle of steady state motion, \phi')
-    
-    surfAx.XScale = 'log';
-    surfAx.YScale = 'log';
-    
-    hold on
-    lw = 1;
-    bndColor = 0*[1,1,1];
-    plot3(TnatFreq,LnatFreq,181+zeros(size(TnatFreq)),'color',bndColor,'linewidth',lw,'linestyle','-')
-    plot3(Tev,Lev,181+zeros(size(Tev)),'color',bndColor,'linewidth',lw,'linestyle','--')
-    plot3(Tvi,Lvi,181+zeros(size(Tvi)),'color',bndColor,'linewidth',lw,'linestyle','-.')
-    
-    lw2 = 2;
-    bndColor2 = 1*[1,1,1];
-    Tlo = TloBnd(TloBnd>10^tPowerMin);
-    Llo = LforBnds(TloBnd>10^tPowerMin);
-    plot3(Tlo,Llo,180+zeros(size(Tlo)),'color',bndColor2,'linewidth',lw2)
-    text(min(Tlo),min(Llo),180,'T = T_{qv} (\phi \approx 63\circ)','VerticalAlignment','bottom','Rotation',90,'Color',bndColor2)
-    Thi = ThiBnd(ThiBnd>10^tPowerMin);
-    Lhi = LforBnds(ThiBnd>10^tPowerMin);
-    plot3(Thi,Lhi,180+zeros(size(Thi)),'color',bndColor2,'linewidth',lw2)
-    text(2*min(Thi),min(Lhi)/2.5,180,'T = T_{vk} (\phi \approx 117\circ)','VerticalAlignment','bottom','Rotation',atand(1/2),'Color',bndColor2)
-    xlim([10^tPowerMin,10^tPowerMax])
-    ylim([10^lPowerMin,10^lPowerMax])
-    view(0,90)
-    
-    c = colorbar;
-    c.Limits = [0,180];
-    c.Ticks = [0,90,180];
-    c.TickLabels = {'0^\circ','90^\circ','180^\circ'};
-    
-    axis square
 end
